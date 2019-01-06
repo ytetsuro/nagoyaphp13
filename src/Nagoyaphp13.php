@@ -24,8 +24,21 @@ class Nagoyaphp13
 
     public function run(string $input): string
     {
-        // please implement me.
-        return '123/456/789';
+        $collection = $this->factory->createBySecondDimensionArray([
+            [1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+        ]);
+
+        $this->setCommandMap($collection);
+
+        $alias_list = $this->parseAlias($input);
+
+        foreach ($alias_list as $alias) {
+            $this->mapper->runRotateByAlias($alias);
+        }
+
+        return $this->converter->convert($collection);
     }
 
     private function parseAlias($input)
