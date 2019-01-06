@@ -28,6 +28,11 @@ class Nagoyaphp13
         return '123/456/789';
     }
 
+    private function parseAlias($input)
+    {
+        return str_split($input);
+    }
+
     private function setCommandMap(Collection $collection)
     {
         $x_rotate = new XRotator($collection);
