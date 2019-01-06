@@ -2,6 +2,11 @@
 
 namespace Ttskch\Nagoyaphp13;
 
+use Ttskch\Nagoyaphp13\NumberCard\Rotator\XRotator;
+use Ttskch\Nagoyaphp13\NumberCard\Rotator\YRotator;
+use Ttskch\Nagoyaphp13\NumberCard\Rotator\XReverseRotator;
+use Ttskch\Nagoyaphp13\NumberCard\Rotator\YReverseRotator;
+use Ttskch\Nagoyaphp13\NumberCard\Collection;
 use Ttskch\Nagoyaphp13\NumberCard\CollectionFactory;
 
 class Nagoyaphp13
@@ -21,5 +26,26 @@ class Nagoyaphp13
     {
         // please implement me.
         return '123/456/789';
+    }
+
+    private function setCommandMap(Collection $collection)
+    {
+        $x_rotate = new XRotator($collection);
+        $y_rotate = new YRotator($collection);
+        $x_reverse_rotate = new XReverseRotator($collection);
+        $y_reverse_rotate = new YReverseRotator($collection);
+
+        $this->mapper->setAlias('a', $x_rotate, 0);
+        $this->mapper->setAlias('b', $x_rotate, 1);
+        $this->mapper->setAlias('c', $x_rotate, 2);
+        $this->mapper->setAlias('d', $y_reverse_rotate, 0);
+        $this->mapper->setAlias('e', $y_reverse_rotate, 1);
+        $this->mapper->setAlias('f', $y_reverse_rotate, 2);
+        $this->mapper->setAlias('g', $x_reverse_rotate, 2);
+        $this->mapper->setAlias('h', $x_reverse_rotate, 1);
+        $this->mapper->setAlias('i', $x_reverse_rotate, 0);
+        $this->mapper->setAlias('j', $y_rotate, 2);
+        $this->mapper->setAlias('k', $y_rotate, 1);
+        $this->mapper->setAlias('l', $y_rotate, 0);
     }
 }
